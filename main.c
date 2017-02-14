@@ -10,7 +10,6 @@
 int main()
 {
 	pid_t pid, sid;
-
 	pid = fork();
 
 	if(pid < 0)
@@ -18,6 +17,8 @@ int main()
 		perror("pid");
 		exit(EXIT_FAILURE);
 	}
+
+	printf("pid: %d", pid);
 
 	if(pid > 0)
 	{
@@ -32,14 +33,13 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
+	printf("sid: %d", sid);
+
 	time_t	starttime;
 	time_t	nowtime;
-	struct tm *timeinfo;
 
 	time(&starttime);
 	time(&nowtime);
-
-	timeinfo = localtime(&starttime);
 
 	while(nowtime - starttime < 20)
 	{
